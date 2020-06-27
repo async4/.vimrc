@@ -1,7 +1,9 @@
 call plug#begin()
-   Plug 'preservim/nerdtree'
    Plug 'vim-airline/vim-airline'
    Plug 'ryanoasis/vim-devicons'
+   Plug 'davidhalter/jedi-vim'
+   Plug 'leafoftree/vim-vue-plugin'
+   Plug 'pangloss/vim-javascript'
 call plug#end()
 
 
@@ -17,12 +19,16 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=40
 let NERDTreeShowHidden=1
-let NERDTreeShowBookmarks=1
+
+
+"vim-airline"
+
 
 "custom-settings"
 set number
 set cursorline
 set tabstop=3 softtabstop=3 shiftwidth=3 expandtab
+set noswapfile
 
 "disable arrow keys"
 noremap <Up> <Nop>
