@@ -1,11 +1,14 @@
 call plug#begin()
    Plug 'preservim/nerdtree'
+   Plug 'ryanoasis/vim-devicons'
+   Plug 'chiel92/vim-autoformat'
 call plug#end()
 
+"requirements 3270Medium Nerd Font or Agave Font for devicons"
 
-
-"NERDTree"
+"OPEN NERDTREE EXTENSION WHEN STARTING VIM"
 "autocmd vimenter * NERDTree"
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -13,31 +16,41 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeWinSize=30
+let g:NERDTreeWinSize=35
 let NERDTreeShowHidden=1
 
-"Change tab"
+"CHANGE TAB"
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 
-"ESC alternative"
-inoremap <C-Space> <Esc>
+"ESC ALTERNATIVE"
+inoremap <C-K> <Esc>
 
+"LINE NUMBER"
+set number
+
+"TAB SHIFT. INDENT"
 set tabstop=3 softtabstop=3 shiftwidth=3 expandtab
+
+"DISABLE SWAP FILE CREATING"
 set noswapfile
+
+"COLOR SCHEME"
 colo pablo
 
-"disable arrow keys"
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+"DISABLE BACKSPACE KEY"
+set backspace=0
 
+"DISABLE ARROW KEY"
+for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+   exec 'noremap' key '<Nop>'
+   exec 'inoremap' key '<Nop>'
+   exec 'cnoremap' key '<Nop>'
+endfor
 
-noremap! <Leader>h <left>   "move cursor left"
-noremap! <Leader>j <down>   "move cursor down"
-noremap! <Leader>k <up>     "move cursor up"
-noremap! <Leader>l <right>  "move cursor right"
-noremap! <Leader>w <esc>wi  "move one word forward"
-noremap! <Leader>e <esc>ei  "move forward to the end of word"
-noremap! <Leader>b <esc>bi  "move one word backward"
+"GIT EXTENSION"
+noremap <F2> :GitGutterEnable<CR>
+noremap <F3> :GitGutterDisable<CR>
+
+"AUTO FORMAT"
+noremap <F4> :Autoformat<CR>
