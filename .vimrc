@@ -2,6 +2,7 @@ call plug#begin()
    Plug 'preservim/nerdtree'
    Plug 'ryanoasis/vim-devicons'
    Plug 'chiel92/vim-autoformat'
+   Plug 'tomasiser/vim-code-dark'
 call plug#end()
 
 "requirements 3270Medium Nerd Font or Agave Font for devicons"
@@ -36,7 +37,7 @@ set tabstop=3 softtabstop=3 shiftwidth=3 expandtab
 set noswapfile
 
 "COLOR SCHEME"
-colo async 
+colo codedark 
 
 "DISABLE KEY"
 for key in ['<Up>', '<Down>', '<Left>', '<Right>']
